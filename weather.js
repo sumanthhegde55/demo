@@ -19,10 +19,17 @@ app.post("/",function(req,res){
       res.write("<h1>The temperature in " + city + " is : " +temp + " degress Celsius</h1>");
       res.write("<p> The weather is currently " + desc + "</p>");
       res.write("<img src="+imageURL+">");
-      res.send();
+      // res.redirect(__dirname+ "index.html");
+      res.write('<form action="/redirect" method="POST"><button type="submit" name="button">Try Another!</button></form>');
+        res.send();
+      // res.redirect(__dirname + "/redirect.html");
+      // res.sendFile(__dirname + "/redirect.html");
     });
   });
 });
+app.post("/redirect",function(req,res){
+  res.redirect("/");
+})
 app.listen(process.env.PORT || 3000,function(){
   console.log("server is working at port 3000");
 });
